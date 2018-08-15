@@ -1,6 +1,4 @@
-from utils.pages import *
-from utils.artists import *
-
+import cloudmusic
 
 # 获取页面html
 # html1 = get_page_content(BASE_URL)
@@ -25,7 +23,7 @@ from utils.artists import *
 # print(artist0)
 
 # 迭代获取id对应的歌手信息并存储到本地文件
-save_artist_info(1870, 2000)
+# artists.save_artist_info(1870, 3000)
 
 # 读取歌手信息
-read_artist_info()
+cloudmusic.artists.read_artist_info()
