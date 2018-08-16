@@ -107,3 +107,4 @@ venv.bak/
 .DS_Store
 /out/
 *.ipynb
+/src/qzone/account.py
