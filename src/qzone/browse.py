@@ -10,7 +10,7 @@ from .encrypt import *
 """
 
 
-def browse_qzone():
+def browse_qzone_moments(start=None, end=None):
     browser = webdriver.Chrome()
     browser.get('https://user.qzone.qq.com')
 
@@ -31,7 +31,7 @@ def browse_qzone():
     time.sleep(1)
     btn1.click()
 
-    print('navigate to user home page...')
+    print('navigate to info center page...')
     time.sleep(1)
     browser.get('https://user.qzone.qq.com/{}'.format(decrypt_str(USER_NAME)))
 
@@ -42,27 +42,27 @@ def browse_qzone():
 
     print('loading full page...')
     time.sleep(1)
-    # browser.execute_script(
-    #     """
-    #     (function () {
-    #       var y = 0;
-    #       var step = 100;
-    #       window.scroll(0, 0);
-    #
-    #       function f() {
-    #         if (y < (document.body.scrollHeight)/5) {
-    #           y += step;
-    #           window.scroll(0, y);
-    #           setTimeout(f, 100);
-    #         } else {
-    #           window.scroll(0, 0);   //滑动到顶部
-    #           document.title += "scroll-done";
-    #         }
-    #       }
-    #       setTimeout(f, 1000);
-    #     })();
-    #     """
-    # )
+    browser.execute_script(
+        """
+        (function () {
+          var y = 0;
+          var step = 100;
+          window.scroll(0, 0);
+
+          function f() {
+            if (y < (document.body.scrollHeight)/5) {
+              y += step;
+              window.scroll(0, y);
+              setTimeout(f, 100);
+            } else {
+              window.scroll(0, 0);   //滑动到顶部
+              document.title += "scroll-done";
+            }
+          }
+          setTimeout(f, 1000);
+        })();
+        """
+    )
 
     print('fetching page source...')
     time.sleep(3)
@@ -70,8 +70,10 @@ def browse_qzone():
     frame = browser.find_element_by_xpath('//*[@id="app_container"]/iframe')
     browser.switch_to.frame(frame)
     html = browser.page_source
-    print(html)
 
-    time.sleep(99999)
-    # print('quit browser...')
-    # browser.quit()
+    time.sleep(1)
+    print('quit browser...')
+    browser.quit()
+
+    print('done.')
+    return html

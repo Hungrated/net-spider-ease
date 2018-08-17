@@ -6,3 +6,16 @@ headers = {'user-agent': user_agent}
 
 # 将目标网站定为QQ空间
 BASE_URL = 'https://user.qzone.qq.com/295415658/'
+
+"""
+
+将获取内容统一转为utf-8编码
+
+:param raw 输入字符串
+
+"""
+
+
+def get_decoded_content(raw):
+    content = bytes(raw, 'UTF-8')
+    return content.decode('UTF-8')
