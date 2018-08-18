@@ -1,6 +1,6 @@
 from qzone import *
 
-html = browse.browse_qzone_moments()
-raw_arr = pages.get_moment_set(html)
-parsed_arr = pages.get_parsed_moment(raw_arr)
-print(parsed_arr)
+arr = browse.browse_qzone_moments(1, 25)
+print('count: ', len(arr))
+for i in range(len(arr)):
+    print(str(i+1), ': \t', arr[i]['pub_time'], '\t\t', arr[i]['like_cnt'], '\t\t', arr[i]['content_o'])

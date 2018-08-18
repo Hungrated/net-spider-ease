@@ -34,6 +34,7 @@ def get_parsed_moment(raw_arr):
             'img_list': get_img_list(raw),
             'like_cnt': get_like_cnt(raw)
         })
+    print(parsed_arr)
     return parsed_arr
 
 
@@ -69,7 +70,7 @@ def get_content(raw):
     elif len(content) == 2:
         content_original = content[0].text
         content_forwarded = content[1].text
-    return content_original, content_forwarded
+    return content_original.replace('\n', ' '), content_forwarded.replace('\n', ' ')
 
 
 """
@@ -107,4 +108,7 @@ def get_like_cnt(raw):
     like_cnt_raw = like_raw.find('a', attrs={'href': 'javascript:void(0);'})
     if like_cnt_raw is None:
         return 0
-    return int(like_cnt_raw.text.replace('人', ''))
+    like_cnt_text = like_cnt_raw.text
+    if like_cnt_text == '' or like_cnt_text is None:
+        return 0
+    return int(like_cnt_text.replace('人', ''))
