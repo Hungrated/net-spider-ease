@@ -3,6 +3,7 @@ from selenium import webdriver
 from .account import *
 from .encrypt import *
 from .pages import *
+from .moments import *
 
 """
 
@@ -190,13 +191,16 @@ def browse_qzone_moments(start=None, page_cnt=None):
     moments = []
     browser = init()
 
-    if start is None:
+    if start is None or start == 1:
         start = 1
+        init_moment_info()
     if page_cnt is None:
         page_cnt = 1
 
     for i in range(start, start + page_cnt):
-        moments.extend(fetch_parsed_moments(browser, i))
+        arr = fetch_parsed_moments(browser, i)
+        save_moment_info(arr)
+        moments.extend(arr)
 
     destroy(browser)
     return moments
