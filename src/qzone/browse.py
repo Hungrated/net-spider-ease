@@ -88,7 +88,7 @@ WebDriver初始化
 
 def init():
     browser = webdriver.Chrome()
-    browser.get('https://user.qzone.qq.com')
+    browser.get('https://user.qzone.md.qq.com')
 
     print('switch to login frame...')
     browser.switch_to.frame('login_frame')
@@ -107,7 +107,7 @@ def init():
     btn1.click()
     wait(1)
 
-    browser.get('https://user.qzone.qq.com/{}'.format(decrypt_str(USER_NAME)))
+    browser.get('https://user.qzone.md.qq.com/{}'.format(decrypt_str(USER_NAME)))
     wait(1)
 
     print('navigate to moment page...')

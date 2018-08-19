@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import re
 
 """
 
@@ -111,4 +112,7 @@ def get_like_cnt(raw):
     like_cnt_text = like_cnt_raw.text
     if like_cnt_text == '' or like_cnt_text is None:
         return 0
-    return int(like_cnt_text.replace('人', ''))
+    if re.search('万', like_cnt_text) is not None:
+        return int(float(re.match('[0-9]+', like_cnt_text).group()) * 10000)
+    else:
+        return int(re.match('[0-9]+', like_cnt_text).group())

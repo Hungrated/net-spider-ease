@@ -5,7 +5,7 @@ user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36
 headers = {'user-agent': user_agent}
 
 # 将目标网站定为QQ空间
-BASE_URL = 'https://user.qzone.qq.com/295415658/'
+BASE_URL = 'https://user.qzone.md.qq.com/295415658/'
 
 """
 
