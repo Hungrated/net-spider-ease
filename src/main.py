@@ -1,4 +1,5 @@
 from qzone import *
 
-parse.export_to_excel()
+browse.browse_qzone_moments(1, 255)
 
+parse.export_to_excel()
