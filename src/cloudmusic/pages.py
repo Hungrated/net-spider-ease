@@ -10,10 +10,11 @@ from .base import *
 
 
 def get_page_content(url):
+    r = None
     try:
         r = requests.get(url, headers=headers)
     finally:
-        return r.text
+        return r.text if r is not None else ''
 
 
 """
