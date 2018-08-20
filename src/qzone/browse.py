@@ -45,24 +45,21 @@ def load_full_page(browser):
         (function () {
           var y = 0;
           var step = 200;
-          window.scroll(0, 0);
-          console.log(document.body.scrollHeight)
-
+          var i = 0;          
+          window.scrollTo(0, 0);
           function f() {
-            if (y < document.body.scrollHeight - 200) {
+            if (y < document.body.scrollHeight - 200 && i < 48) {              
               y += step;
-              window.scroll(0, y);
+              i++;
+              window.scrollTo(0, y);
               setTimeout(f, 150);
-            } else {
-              window.scroll(0, 0);
-              document.title += "scroll-done";
             }
           }
           setTimeout(f, 1000);
         })();
         """
     )
-    wait(5)
+    wait(9)
     return True
 
 
@@ -88,7 +85,7 @@ WebDriver初始化
 
 def init():
     browser = webdriver.Chrome()
-    browser.get('https://user.qzone.md.qq.com')
+    browser.get('https://i.qq.com/')
 
     print('switch to login frame...')
     browser.switch_to.frame('login_frame')
@@ -107,7 +104,7 @@ def init():
     btn1.click()
     wait(1)
 
-    browser.get('https://user.qzone.md.qq.com/{}'.format(decrypt_str(USER_NAME)))
+    browser.get('https://user.qzone.qq.com/{}'.format(decrypt_str(USER_NAME)))
     wait(1)
 
     print('navigate to moment page...')
@@ -134,7 +131,7 @@ def init():
 def destroy(browser):
     print('quit browser...')
     browser.quit()
-    print('\n*** done. **\n')
+    print('\n*** done. ***\n')
     return True
 
 
